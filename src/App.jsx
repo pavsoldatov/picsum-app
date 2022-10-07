@@ -1,34 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "./App.scss";
+
+import PhotoGrid from "./components/Layout/Grid/PhotoGrid";
+import PhotoList from "./components/PhotoCard/PhotoList";
+
+const instance = axios.create({
+  baseURL: "https://picsum.photos/",
+  timeout: 1000,
+});
+
+const getData = async (page = 1, limit = 9) => {
+  const response = await instance.get(`/v2/list?page=${page}&limit=${limit}`);
+  return response.data;
+};
+
+const getResizedPhotos = (payload, width = 600, height = 400) => {
+  if (!height) height = width;
+
+  const resizedPhotos = payload.map((item) => {
+    const replacement = `${width}/${height}`;
+    const regex = /([0-9]+)\/([0-9]+)(?=[^\/]*$)/;
+    const updatedUrl = item.download_url.replace(regex, replacement);
+    return {
+      ...item,
+      width: width,
+      height: height,
+      download_url: updatedUrl,
+    };
+  });
+
+  return resizedPhotos;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [photos, setPhotos] = useState([]);
+  const photoHeight = 200;
+  const photoWidth = 300;
+
+  useEffect(() => {
+    getData().then((json) => {
+      const resizedPhotos = getResizedPhotos(json, photoWidth, photoHeight);
+      setPhotos(resizedPhotos);
+    });
+  }, []);
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>Header</header>
+      <main style={{ flex: "1", display: "flex" }}>
+        <PhotoGrid>
+          <PhotoList photos={photos} width={photoWidth} height={photoHeight} />
+        </PhotoGrid>
+      </main>
+      <footer>Footer</footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
