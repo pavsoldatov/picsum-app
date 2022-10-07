@@ -29,7 +29,7 @@ const getResizedPhotos = (payload, width = 600, height = 400) => {
       download_url: updatedUrl,
     };
   });
-
+  console.log(resizedPhotos)
   return resizedPhotos;
 };
 

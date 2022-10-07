@@ -1,5 +1,53 @@
-.photo-card {
-  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
-    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+.content {
+  position: relative;
+}
+
+.content__photo {
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
   border-radius: 4px;
+
+  transition: all ease-in-out 75ms;
+}
+
+.content .content__overlay {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  transition: all 150ms ease-in-out 0s;
+}
+
+.content:hover .content__overlay {
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.content__details {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+  top: 50%;
+  
+  transition: all 0.3s ease-in-out 0s;
+  z-index: 2;
+}
+
+.content:hover .content__details {
+  opacity: 1;
+}
+
+.content__details .content__title {
+  color: #fff;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
 }
