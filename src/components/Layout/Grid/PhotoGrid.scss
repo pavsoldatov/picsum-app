@@ -1,10 +1,21 @@
+@import "../../../partials/_breakpoints.scss";
+
 .photo-grid {
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem;
   max-width: 1240px;
-//   width: min(95%, 70rem);
+  //   width: min(95%, 70rem);
   padding-block: 2rem;
   grid-template-columns: repeat(3, 1fr);
-  margin-inline: auto;
+  margin-inline: .5rem;
   place-content: center;
+
+  @media (max-width: $md) {
+    grid-template-columns: repeat(2, 1fr);
+    
+  }
+
+  @media (max-width: $sm) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

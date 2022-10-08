@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./Photo.scss";
 
 const Photo = ({ author, url }) => {
@@ -8,7 +7,8 @@ const Photo = ({ author, url }) => {
         <img className="content__photo" src={url} alt="" />
         <div className="content__overlay"></div>
         <div className="content__details">
-          <figcaption className="content__title">This is a title</figcaption>
+          <h4 className="content__title">❤️</h4>
+          <h3 className="content__title">{author}</h3>
         </div>
       </a>
     </article>

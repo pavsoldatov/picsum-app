@@ -1,19 +1,9 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import "./App.scss";
 
+import { getData } from "./api/axios";
 import PhotoGrid from "./components/Layout/Grid/PhotoGrid";
 import PhotoList from "./components/PhotoCard/PhotoList";
-
-const instance = axios.create({
-  baseURL: "https://picsum.photos/",
-  timeout: 1000,
-});
-
-const getData = async (page = 1, limit = 9) => {
-  const response = await instance.get(`/v2/list?page=${page}&limit=${limit}`);
-  return response.data;
-};
 
 const getResizedPhotos = (payload, width = 600, height = 400) => {
   if (!height) height = width;
@@ -29,17 +19,18 @@ const getResizedPhotos = (payload, width = 600, height = 400) => {
       download_url: updatedUrl,
     };
   });
-  console.log(resizedPhotos)
+  console.log(resizedPhotos);
   return resizedPhotos;
 };
 
 function App() {
   const [photos, setPhotos] = useState([]);
+  const [pageNum, setPageNum] = useState(1);
   const photoHeight = 200;
   const photoWidth = 300;
 
   useEffect(() => {
-    getData().then((json) => {
+    getData(pageNum).then((json) => {
       const resizedPhotos = getResizedPhotos(json, photoWidth, photoHeight);
       setPhotos(resizedPhotos);
     });
@@ -48,10 +39,32 @@ function App() {
   return (
     <div className="App">
       <header>Header</header>
-      <main style={{ flex: "1", display: "flex" }}>
+      <main
+        style={{
+          flex: "1",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <PhotoGrid>
           <PhotoList photos={photos} width={photoWidth} height={photoHeight} />
         </PhotoGrid>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "2px",
+          }}
+        >
+          <button>Prev</button>
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>Next</button>
+        </div>
       </main>
       <footer>Footer</footer>
     </div>
