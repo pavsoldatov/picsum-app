@@ -4,15 +4,17 @@
   display: grid;
   gap: 1.5rem;
   max-width: 1240px;
-  //   width: min(95%, 70rem);
+  min-height: 75vh;
   padding-block: 2rem;
   grid-template-columns: repeat(3, 1fr);
   margin-inline: .5rem;
   place-content: center;
 
-  @media (max-width: $md) {
-    grid-template-columns: repeat(2, 1fr);
-    
+  @media (max-width: calc($lg + 100px)) {
+    grid-template-columns: repeat(3, 200px);
+    min-height: 80vh;
+    font-size: 12px;
+    gap: .5rem;
   }
 
   @media (max-width: $sm) {

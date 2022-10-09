@@ -1,8 +1,6 @@
 .pagination-buttons {
-  // flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  // margin: 1rem auto 3rem auto;
+  justify-content: flex-start;
+  align-items: center;
   gap: 2px;
 }

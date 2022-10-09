@@ -11,10 +11,9 @@ const Photo = ({ id, author, url, isFetching, setIsFetching }) => {
           <motion.img
             className="content__photo"
             src={url}
-            alt=""
             initial={{ opacity: 0 }}
             animate={{ opacity: isFetching ? 0 : 1 }}
-            transition={{ opacity: { delay: 0.5, duration: 0.4 } }}
+            transition={{ opacity: { delay: 0.15, duration: 0.25 } }}
             onLoad={imageIsLoaded}
           />
           <div className="content__overlay"></div>

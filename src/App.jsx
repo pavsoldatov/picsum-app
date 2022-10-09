@@ -16,8 +16,8 @@ function App() {
   useEffect(() => {
     getData(pageNum).then((json) => {
       const resizedPhotos = getResizedPhotos(json, photoWidth, photoHeight);
-      setPhotos(resizedPhotos);
       setIsFetching(false);
+      setPhotos(resizedPhotos);
     });
   }, [pageNum]);
 

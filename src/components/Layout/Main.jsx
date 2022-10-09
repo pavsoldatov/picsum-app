@@ -10,7 +10,7 @@ const Main = ({ children, photos, width, height, isFetching, setIsFetching }) =>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: .5 }}
       >
         <PhotoGrid>
           <PhotoList
