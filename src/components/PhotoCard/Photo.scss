@@ -1,5 +1,7 @@
 .content {
   position: relative;
+  background: #ccc;
+  border-radius: var(--radius);
 }
 
 .content__photo {
@@ -52,5 +54,6 @@
   font-weight: 500;
   font-family: inherit;
   letter-spacing: 0.15rem;
+  padding-inline: 1rem;
   text-transform: uppercase;
 }
