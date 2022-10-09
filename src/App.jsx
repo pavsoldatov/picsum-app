@@ -16,8 +16,8 @@ function App() {
   useEffect(() => {
     getData(pageNum).then((json) => {
       const resizedPhotos = getResizedPhotos(json, photoWidth, photoHeight);
-      setIsFetching(false);
       setPhotos(resizedPhotos);
+      setIsFetching(false);
     });
   }, [pageNum]);
 
@@ -26,6 +26,7 @@ function App() {
       <header>Header</header>
       <Main
         photos={photos}
+        setPhotos={setPhotos}
         width={photoWidth}
         height={photoHeight}
         isFetching={isFetching}

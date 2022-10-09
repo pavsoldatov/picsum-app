@@ -26,8 +26,9 @@
   transition: all 100ms ease-in-out 0s;
 }
 
-.content:hover .content__overlay {
-  opacity: 0.3;
+.content:hover .content__overlay,
+.content:focus-visible .content__overlay {
+  opacity: 0.7;
   z-index: 1;
   border-radius: var(--radius);
 }
@@ -40,12 +41,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
+
   transition: all 0.3s ease-in-out 0s;
   z-index: 2;
 }
 
-.content:hover .content__details {
+.content:hover .content__details,
+.content:focus-visible .content__details {
   opacity: 1;
 }
 
