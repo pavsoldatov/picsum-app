@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.scss";
 
 import { getData } from "./api/axios";
+import { motion } from "framer-motion";
 import PhotoGrid from "./components/Layout/Grid/PhotoGrid";
 import PhotoList from "./components/PhotoCard/PhotoList";
 
@@ -25,9 +26,10 @@ const getResizedPhotos = (payload, width = 600, height = 400) => {
 
 function App() {
   const [photos, setPhotos] = useState([]);
-  const [pageNum, setPageNum] = useState(1);
+  const [pageNum, setPageNum] = useState(2);
   const photoHeight = 200;
   const photoWidth = 300;
+  const limit = 9
 
   useEffect(() => {
     getData(pageNum).then((json) => {
@@ -48,9 +50,22 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <PhotoGrid>
-          <PhotoList photos={photos} width={photoWidth} height={photoHeight} />
-        </PhotoGrid>
+        {photos.length === limit && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            <PhotoGrid>
+              <PhotoList
+                photos={photos}
+                width={photoWidth}
+                height={photoHeight}
+              />
+            </PhotoGrid>
+          </motion.div>
+        )}
+      </main>
         <div
           style={{
             display: "flex",
@@ -65,7 +80,6 @@ function App() {
           <button>3</button>
           <button>Next</button>
         </div>
-      </main>
       <footer>Footer</footer>
     </div>
   );
