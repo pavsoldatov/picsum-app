@@ -11,6 +11,7 @@ const Main = ({
   height,
   isFetching,
   setIsFetching,
+  setViewed
 }) => {
   return (
     <main className="main">
@@ -27,6 +28,7 @@ const Main = ({
               height={height}
               isFetching={isFetching}
               setIsFetching={setIsFetching}
+              setViewed={setViewed}
             />
           )}
         </PhotoGrid>

@@ -7,11 +7,12 @@ import LikeButton from "../Button/LikeButton";
 import UnlikeButton from "../Button/UnlikeButton";
 import ViewButton from "../Button/ViewButton";
 
-const Photo = ({ id, author, url, isFetching, setIsFetching }) => {
+const Photo = ({ id, author, url, isFetching, setIsFetching, setViewed }) => {
   const imageIsLoaded = () => setIsFetching(false);
 
   const [isLiked, setIsLiked] = useState(false);
   const handleLike = () => {
+    
     console.log(id)    
     setIsLiked((prevLikeState) => !prevLikeState)
   };
@@ -27,7 +28,7 @@ const Photo = ({ id, author, url, isFetching, setIsFetching }) => {
             ) : (
               <LikeButton handleLike={handleLike} />
             )}
-            <ViewButton />
+            <ViewButton setViewed={setViewed} id={id}/>
             <h3 className="content__title">{author}</h3>
           </div>
           <motion.img

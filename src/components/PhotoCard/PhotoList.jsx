@@ -1,6 +1,6 @@
 import Photo from "./Photo";
 
-const PhotoList = ({ photos, isFetching, setIsFetching }) => {
+const PhotoList = ({ photos, isFetching, setIsFetching, setViewed }) => {
   return (
     <>
       {photos.map((p) => (
@@ -11,6 +11,7 @@ const PhotoList = ({ photos, isFetching, setIsFetching }) => {
           url={p.download_url}
           isFetching={isFetching}
           setIsFetching={setIsFetching}
+          setViewed={setViewed}
         />
       ))}
     </>

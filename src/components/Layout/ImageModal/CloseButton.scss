@@ -1,0 +1,17 @@
+.image-modal__close-button {
+  margin-right: auto;
+  background: transparent;
+  padding: 2px 4px;
+  cursor: pointer;
+  border: none;
+
+  &:hover {
+    background: rgba($color: #f1f1f1, $alpha: 0.25);
+  }
+}
+
+.close-button__icon {
+  vertical-align: middle;
+  color: #f1f1f1;
+  font-size: 2rem;
+}
