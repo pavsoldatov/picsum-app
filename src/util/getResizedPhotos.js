@@ -10,6 +10,7 @@ const getResizedPhotos = (payload, width = 600, height = 400) => {
       width: width,
       height: height,
       download_url: updatedUrl,
+      isFavorite: false,
     };
   });
   return resizedPhotos;

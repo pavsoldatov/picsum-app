@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import _ from "lodash";
 
 import "./App.scss";
 import { getData } from "./api/axios";
@@ -7,27 +8,46 @@ import Main from "./components/Layout/Main";
 import getResizedPhotos from "./util/getResizedPhotos";
 import ImageModal from "./components/Layout/ImageModal/ImageModal";
 
+const getInitialList = () => {
+  const localData = localStorage.getItem("photos");
+  return localData ? JSON.parse(localData) : [];
+};
+const initialState = getInitialList();
+
 function App() {
   const [photos, setPhotos] = useState([]);
   const [pageNum, setPageNum] = useState(1);
   const [isFetching, setIsFetching] = useState(true);
-  const [viewed, setViewed] = useState({isViewed: false, viewId: ""});
-  console.log(viewed)
+  const [viewed, setViewed] = useState({ isViewed: false, viewId: "" });
+  const [limit, setLimit] = useState(9);
 
   const photoHeight = 200;
   const photoWidth = 300;
 
+  const [favoritePhotos, setFavoritePhotos] = useState(initialState);
+
   useEffect(() => {
-    getData(pageNum).then((json) => {
+    localStorage.setItem("photos", JSON.stringify(favoritePhotos));
+  }, [favoritePhotos]);
+
+  useEffect(() => {
+    getData(pageNum, limit).then((json) => {
       const resizedPhotos = getResizedPhotos(json, photoWidth, photoHeight);
-      setPhotos(resizedPhotos);
+      const favIDs = favoritePhotos.map((photo) => photo.id);
+      const newPhotos = resizedPhotos.map((rp) =>
+        favIDs.includes(rp.id)
+          ? { ...rp, isFavorite: true }
+          : { ...rp, isFavorite: false }
+      );
+
+      setPhotos(newPhotos);
       setIsFetching(false);
     });
-  }, [pageNum]);
+  }, [pageNum, limit]);
 
   return (
     <div className="App">
-      {viewed.isViewed && <ImageModal setViewed={setViewed} viewed={viewed} />}
+      <ImageModal setViewed={setViewed} viewed={viewed} />
       <header>Header</header>
       <Main
         photos={photos}
@@ -38,6 +58,10 @@ function App() {
         setIsFetching={setIsFetching}
         viewed={viewed}
         setViewed={setViewed}
+        limit={limit}
+        setLimit={setLimit}
+        favoritePhotos={favoritePhotos}
+        setFavoritePhotos={setFavoritePhotos}
       >
         <PaginationButtons setPageNum={setPageNum} />
       </Main>

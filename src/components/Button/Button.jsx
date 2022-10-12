@@ -1,6 +1,6 @@
 import "./Button.scss";
 
-const Button = ({value, setPageNum}) => {
+const Button = ({value, text, setPageNum}) => {
   const title = `Page ${value}`
   const ariaLabel = `Page Number ${value}`
 
@@ -10,8 +10,9 @@ const Button = ({value, setPageNum}) => {
       type="text"
       aria-label={ariaLabel}
       title={title}
+      text={text}
       onClick={() => setPageNum(value)}
-    >{value}</button>
+    >{text}</button>
   );
 };
 

@@ -3,6 +3,7 @@ import { IoHeartSharp, IoHeartDislikeSharp } from "react-icons/io5";
 import "./LikeButton.scss";
 
 const LikeButton = ({ handleLike }) => {
+
   return (
     <button
       type="button"

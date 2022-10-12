@@ -4,15 +4,13 @@
   display: grid;
   gap: 1.5rem;
   max-width: 1240px;
-  min-height: 75vh;
-  padding-block: 2rem;
-  grid-template-columns: repeat(3, 1fr);
-  margin-inline: .5rem;
+  min-height: 70vh;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   place-content: center;
 
   @media (max-width: calc($lg + 100px)) {
     grid-template-columns: repeat(3, 200px);
-    min-height: 80vh;
+    // min-height: 80vh;
     font-size: 12px;
     gap: .5rem;
   }
@@ -20,4 +18,8 @@
   @media (max-width: $sm) {
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.grid-col-span-2 {
+  grid-column: span 2;
 }
