@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import _ from "lodash";
 
 import "./App.scss";
 import { getData } from "./api/axios";

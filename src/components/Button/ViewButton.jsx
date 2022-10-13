@@ -1,5 +1,5 @@
 import { IoEye } from "react-icons/io5";
-import "./viewButton.scss";
+import "./ViewButton.scss";
 
 const ViewButton = ({ setViewed, id }) => {
   const handleViewClick = () => {
