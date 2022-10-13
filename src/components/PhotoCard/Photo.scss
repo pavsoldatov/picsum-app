@@ -2,11 +2,12 @@
   position: relative;
   background: #ccc;
   border-radius: var(--radius);
+  // width: min-content;
 }
 
 .content__photo {
   height: 100%;
-  // max-width: 100%;
+  max-width: 100%;
   object-fit: cover;
   border-radius: var(--radius);
 

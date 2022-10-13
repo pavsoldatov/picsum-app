@@ -6,7 +6,6 @@ import "./Photo.scss";
 import LikeButton from "../Button/LikeButton";
 import UnlikeButton from "../Button/UnlikeButton";
 import ViewButton from "../Button/ViewButton";
-import addFavsToLocalStorage from "../../util/addFavsToLocalStorage";
 
 const Photo = ({
   id,
@@ -16,7 +15,6 @@ const Photo = ({
   setIsFetching,
   setViewed,
   photo,
-  favoritePhotos,
   setFavoritePhotos,
   isFavorite,
   photos,

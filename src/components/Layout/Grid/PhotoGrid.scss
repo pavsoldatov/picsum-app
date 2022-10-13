@@ -10,9 +10,8 @@
 
   @media (max-width: calc($lg + 100px)) {
     grid-template-columns: repeat(3, 200px);
-    // min-height: 80vh;
     font-size: 12px;
-    gap: .5rem;
+    gap: 0.5rem;
   }
 
   @media (max-width: $sm) {

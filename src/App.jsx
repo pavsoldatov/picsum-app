@@ -30,6 +30,7 @@ function App() {
 
   useEffect(() => {
     getData(pageNum, limit).then((json) => {
+      console.log(json)
       const resizedPhotos = getResizedPhotos(json, photoWidth, photoHeight);
       const favIDs = favoritePhotos.map((photo) => photo.id);
       const newPhotos = resizedPhotos.map((rp) =>

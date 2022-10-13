@@ -1,3 +1,5 @@
+import ReactDOM from "react-dom";
+
 import CloseButton from "./CloseButton";
 import "./ImageModal.scss";
 
@@ -7,14 +9,15 @@ const ImageModal = ({ setViewed, viewed }) => {
 
   return (
     isViewed && (
-      <div className="image-modal__backdrop">
+      <>
+        <div className="image-modal__backdrop" />
         <div className="image-modal">
           <header style={{ textAlign: "end" }}>
             <CloseButton setViewed={setViewed} viewed={viewed} />
           </header>
           <img width="100%" className="image-modal__image" src={src} alt="" />
         </div>
-      </div>
+      </>
     )
   );
 };
