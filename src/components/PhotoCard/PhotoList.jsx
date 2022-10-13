@@ -1,5 +1,5 @@
-import Photo from "./Photo";
 import FavoritePhotosList from "./FavoritePhotosList";
+import AllPhotosList from "./AllPhotosList";
 
 const PhotoList = ({
   photos,
@@ -11,7 +11,7 @@ const PhotoList = ({
   setFavoritePhotos,
   activeFilter,
 }) => {
-  if (activeFilter === "Favorites")
+  if (activeFilter === "Favorites" && favoritePhotos.length > 0)
     return (
       <>
         <FavoritePhotosList
@@ -29,25 +29,15 @@ const PhotoList = ({
   if (activeFilter === "All" && photos.length > 0) {
     return (
       <>
-        {photos.map((p) => {
-          return (
-            <Photo
-              key={p.id}
-              id={p.id}
-              author={p.author}
-              url={p.download_url}
-              photo={p}
-              isFetching={isFetching}
-              setIsFetching={setIsFetching}
-              setViewed={setViewed}
-              isFavorite={p.isFavorite}
-              favoritePhotos={favoritePhotos}
-              setFavoritePhotos={setFavoritePhotos}
-              setPhotos={setPhotos}
-              photos={photos}
-            />
-          );
-        })}
+        <AllPhotosList
+          photos={photos}
+          setPhotos={setPhotos}
+          isFetching={isFetching}
+          setIsFetching={setIsFetching}
+          setViewed={setViewed}
+          favoritePhotos={favoritePhotos}
+          setFavoritePhotos={setFavoritePhotos}
+        />
       </>
     );
   }
