@@ -46,7 +46,6 @@ function App() {
   return (
     <div className="App">
       <ImageModal setViewed={setViewed} viewed={viewed} />
-      <header>Header</header>
       <Main
         photos={photos}
         setPhotos={setPhotos}
@@ -62,7 +61,6 @@ function App() {
         favoritePhotos={favoritePhotos}
         setFavoritePhotos={setFavoritePhotos}
       />
-      <footer>Footer</footer>
     </div>
   );
 }
