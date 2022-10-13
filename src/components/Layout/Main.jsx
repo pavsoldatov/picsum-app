@@ -6,9 +6,10 @@ import PhotoGrid from "./Grid/PhotoGrid";
 import FilterButtons from "../FilterButtons/FilterButtons";
 import PerPageInput from "../PerPageInput/PerPageInput";
 import ControlsSection from "./ControlsSection/ControlsSection";
+import PaginationButtons from "../PaginationButtons/PaginationButtons";
+import { useState } from "react";
 
 const Main = ({
-  children,
   photos,
   setPhotos,
   width,
@@ -17,15 +18,20 @@ const Main = ({
   setIsFetching,
   setViewed,
   setLimit,
+  setPageNum,
   favoritePhotos,
   setFavoritePhotos,
 }) => {
   const changeItemsPerPage = (e) => setLimit(e.target.value);
+  const [activeFilter, setActiveFilter] = useState("All");
 
   return (
     <main className="main">
       <ControlsSection>
-        <FilterButtons />
+        <FilterButtons
+          activeFilter={activeFilter}
+          setActiveFilter={setActiveFilter}
+        />
         <PerPageInput
           changeItemsPerPage={changeItemsPerPage}
           placeholder={photos.length}
@@ -48,11 +54,13 @@ const Main = ({
               setViewed={setViewed}
               favoritePhotos={favoritePhotos}
               setFavoritePhotos={setFavoritePhotos}
+              activeFilter={activeFilter}
+              setActiveFilter={setActiveFilter}
             />
           )}
         </PhotoGrid>
       </motion.div>
-      {children}
+      <PaginationButtons setPageNum={setPageNum} />
     </main>
   );
 };

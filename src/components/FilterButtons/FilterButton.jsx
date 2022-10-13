@@ -1,10 +1,19 @@
 import "./FilterButton.scss";
 
-const FilterButton = ({ value, text, id, activeBtnId, setActiveBtnId }) => {
+const FilterButton = ({
+  value,
+  text,
+  id,
+  activeBtnId,
+  setActiveBtnId,
+  activeFilter,
+  setActiveFilter,
+}) => {
   const title = `Show ${text.toLowerCase()}`;
   const ariaLabel = `Page Number ${value}`;
 
   const handleClick = () => {
+    setActiveFilter(text)
     setActiveBtnId(id);
   };
 

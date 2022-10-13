@@ -1,12 +1,12 @@
 import { useState } from "react";
 import FilterButton from "./FilterButton";
 
-const FilterButtons = () => {
-  const filterButtons = [
-    { id: "0", text: "All" },
-    { id: "1", text: "Favorites" },
-  ];
+const filterButtons = [
+  { id: "0", text: "All" },
+  { id: "1", text: "Favorites" },
+];
 
+const FilterButtons = ({ activeFilter, setActiveFilter }) => {
   const [activeBtnId, setActiveBtnId] = useState("0");
 
   return (
@@ -18,7 +18,9 @@ const FilterButtons = () => {
           text={btn.text}
           activeBtnId={activeBtnId}
           setActiveBtnId={setActiveBtnId}
-        ></FilterButton>
+          activeFilter={activeFilter}
+          setActiveFilter={setActiveFilter}
+        />
       ))}
     </div>
   );

@@ -3,7 +3,6 @@ import _ from "lodash";
 
 import "./App.scss";
 import { getData } from "./api/axios";
-import PaginationButtons from "./components/PaginationButtons/PaginationButtons";
 import Main from "./components/Layout/Main";
 import getResizedPhotos from "./util/getResizedPhotos";
 import ImageModal from "./components/Layout/ImageModal/ImageModal";
@@ -60,12 +59,10 @@ function App() {
         setViewed={setViewed}
         limit={limit}
         setLimit={setLimit}
+        setPageNum={setPageNum}
         favoritePhotos={favoritePhotos}
         setFavoritePhotos={setFavoritePhotos}
-      >
-        <PaginationButtons setPageNum={setPageNum} />
-      </Main>
-
+      />
       <footer>Footer</footer>
     </div>
   );
