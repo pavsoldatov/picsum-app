@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="App">
-      <ImageModal setViewed={setViewed} viewed={viewed} />
+      <ImageModal setViewed={setViewed} viewed={viewed} isFetching={isFetching}/>
       <Main
         photos={photos}
         setPhotos={setPhotos}

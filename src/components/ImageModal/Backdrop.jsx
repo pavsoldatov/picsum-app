@@ -1,7 +1,9 @@
 import "./Backdrop.scss";
 
-const Backdrop = () => {
-  return <div className="image-modal__backdrop" />;
+const Backdrop = ({ setViewed }) => {
+  return (
+    <div onClick={() => setViewed(false)} className="image-modal__backdrop" />
+  );
 };
 
 export default Backdrop;

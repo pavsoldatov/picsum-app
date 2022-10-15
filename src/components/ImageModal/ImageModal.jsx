@@ -5,22 +5,22 @@ import CloseButton from "./CloseButton";
 import Backdrop from "./Backdrop";
 import "./ImageModal.scss";
 
-const ImageModal = ({ setViewed, viewed }) => {
+const ImageModal = ({ setViewed, viewed, isFetching }) => {
   const { isViewed, viewId } = viewed;
   const src = `https://picsum.photos/id/${viewId}/1940/1200`;
 
   useEffect(() => {
-    const close = (e) => {
+    const closeOnEscape = (e) => {
       if (e.key === "Escape") setViewed(false);
     };
-    window.addEventListener("keydown", close);
-    return () => window.removeEventListener("keydown", close);
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
 
   return (
     isViewed && (
       <>
-        <Backdrop />
+        <Backdrop setViewed={setViewed} />
         <div className="image-modal">
           <header className="image-modal__header">
             <CloseButton setViewed={setViewed} viewed={viewed} />
