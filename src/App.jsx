@@ -4,7 +4,7 @@ import "./App.scss";
 import { getData } from "./api/axios";
 import Main from "./components/Layout/Main";
 import getResizedPhotos from "./util/getResizedPhotos";
-import ImageModal from "./components/Layout/ImageModal/ImageModal";
+import ImageModal from "./components/ImageModal/ImageModal";
 
 const getInitialList = () => {
   const localData = localStorage.getItem("photos");
