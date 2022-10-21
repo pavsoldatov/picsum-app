@@ -14,7 +14,7 @@ const initialState = getInitialList();
 
 function App() {
   const [photos, setPhotos] = useState([]);
-  const [pageNum, setPageNum] = useState(1);
+  const [pageNum, setPageNum] = useState(2);
   const [isFetching, setIsFetching] = useState(true);
   const [viewed, setViewed] = useState({ isViewed: false, viewId: "" });
   const [limit, setLimit] = useState(9);
@@ -30,7 +30,6 @@ function App() {
 
   useEffect(() => {
     getData(pageNum, limit).then((json) => {
-      console.log(json)
       const resizedPhotos = getResizedPhotos(json, photoWidth, photoHeight);
       const favIDs = favoritePhotos.map((photo) => photo.id);
       const newPhotos = resizedPhotos.map((rp) =>

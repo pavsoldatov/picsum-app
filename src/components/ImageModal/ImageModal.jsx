@@ -3,19 +3,14 @@ import { useEffect } from "react";
 
 import CloseButton from "./CloseButton";
 import Backdrop from "./Backdrop";
+import { useCloseOnEscape } from "./useCloseOnEscape";
 import "./ImageModal.scss";
 
-const ImageModal = ({ setViewed, viewed, isFetching }) => {
+const ImageModal = ({ setViewed, viewed }) => {
   const { isViewed, viewId } = viewed;
   const src = `https://picsum.photos/id/${viewId}/1940/1200`;
 
-  useEffect(() => {
-    const closeOnEscape = (e) => {
-      if (e.key === "Escape") setViewed(false);
-    };
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, []);
+  useCloseOnEscape(setViewed); // expects a boolean state setter
 
   return (
     isViewed && (
