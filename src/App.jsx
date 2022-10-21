@@ -61,6 +61,7 @@ function App() {
         setViewed={setViewed}
         limit={limit}
         setLimit={setLimit}
+        pageNum={pageNum}
         setPageNum={setPageNum}
         favoritePhotos={favoritePhotos}
         setFavoritePhotos={setFavoritePhotos}

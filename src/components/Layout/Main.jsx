@@ -18,6 +18,7 @@ const Main = ({
   setIsFetching,
   setViewed,
   setLimit,
+  pageNum,
   setPageNum,
   favoritePhotos,
   setFavoritePhotos,
@@ -60,7 +61,7 @@ const Main = ({
           )}
         </PhotoGrid>
       </motion.div>
-      <PaginationButtons setPageNum={setPageNum} />
+      <PaginationButtons pageNum={pageNum} setPageNum={setPageNum} />
     </main>
   );
 };

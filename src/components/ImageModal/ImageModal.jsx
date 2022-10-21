@@ -17,13 +17,10 @@ const ImageModal = ({ setViewed, viewed }) => {
           <Backdrop setViewed={setViewed} />,
           document.getElementById("backdrop-root")
         )}
-
         {ReactDOM.createPortal(
           <ImageModalOverlay setViewed={setViewed} viewed={viewed} />,
           document.getElementById("overlay-root")
         )}
-        {/* <Backdrop setViewed={setViewed} /> */}
-        {/* <ImageModalOverlay setViewed={setViewed} viewed={viewed} /> */}
       </>
     )
   );
