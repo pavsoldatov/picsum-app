@@ -6,15 +6,15 @@ import Main from "./components/Layout/Main";
 import getResizedPhotos from "./util/getResizedPhotos";
 import ImageModal from "./components/ImageModal/ImageModal";
 
-const getInitialList = () => {
+const getLocalPhotos = () => {
   const localData = localStorage.getItem("photos");
   return localData ? JSON.parse(localData) : [];
 };
-const initialState = getInitialList();
+const initialState = getLocalPhotos();
 
 function App() {
   const [photos, setPhotos] = useState([]);
-  const [pageNum, setPageNum] = useState(2);
+  const [pageNum, setPageNum] = useState(1);
   const [isFetching, setIsFetching] = useState(true);
   const [viewed, setViewed] = useState({ isViewed: false, viewId: "" });
   const [limit, setLimit] = useState(9);
@@ -32,11 +32,11 @@ function App() {
     getData(pageNum, limit).then((json) => {
       const resizedPhotos = getResizedPhotos(json, photoWidth, photoHeight);
       const favIDs = favoritePhotos.map((photo) => photo.id);
-      const newPhotos = resizedPhotos.map((rp) =>
-        favIDs.includes(rp.id)
+      const newPhotos = resizedPhotos.map((rp) => {
+        return favIDs.includes(rp.id)
           ? { ...rp, isFavorite: true }
-          : { ...rp, isFavorite: false }
-      );
+          : { ...rp, isFavorite: false };
+      });
 
       setPhotos(newPhotos);
       setIsFetching(false);
@@ -45,7 +45,11 @@ function App() {
 
   return (
     <div className="App">
-      <ImageModal setViewed={setViewed} viewed={viewed} isFetching={isFetching}/>
+      <ImageModal
+        setViewed={setViewed}
+        viewed={viewed}
+        isFetching={isFetching}
+      />
       <Main
         photos={photos}
         setPhotos={setPhotos}

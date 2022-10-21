@@ -5,12 +5,11 @@
   align-items: center;
   min-height: 100vh;
 
-  position: fixed;
-  // left: 50%;
-  // top: 50%;
-  // transform: translate(-50%, -50%);
-  // margin: 0.5rem auto;
   width: 75%;
+
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
   z-index: 11;
 }
 

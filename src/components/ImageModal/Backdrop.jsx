@@ -1,3 +1,5 @@
+import ReactDOM from "react-dom";
+
 import "./Backdrop.scss";
 
 const Backdrop = ({ setViewed }) => {
